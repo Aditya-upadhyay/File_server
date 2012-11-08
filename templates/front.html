@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+
+	<html>
+		<head>
+			 <LINK href="static/special.css" rel="stylesheet" type="text/css">
+			<title>Search Results</title>
+		</head>
+		<body>
+		<div>
+		<h2>{{len}} results found for "{{search}}"</h2>
+		{% for search_result in finding %}
+		<ul> 
+		<li id="link" ><a href="{{search_result}}">{{search_result.split('/')[-1]}}</a><br></li>
+		{% endfor %}
+		</ul>
+		</div>
+		</body>
+			
+	</html>

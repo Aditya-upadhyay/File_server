@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+
+	<html>
+		<head>
+			 <LINK href="static/special.css" rel="stylesheet" type="text/css">
+			<title>Files</title>
+		</head>
+		<body>
+		<table><tr><td><div>
+		<form action="search">
+ 			 <li id="search" style=" border-bottom: 0px">Search: <input type="text" name="search"><br>
+ 			 <input type="text" name="path" value="{{path}}" style=" border-bottom: 0px; visibility: hidden; height: 0px"><br></li>
+ 			 <input style=" border-bottom: 0px; visibility: hidden; height: 0px;" type="submit" value="Search"></li>
+			 <div id="back">
+			 {% if path != 'static/shared' and  path != 'static/shared/' %}
+ 			 <a  href= "dir?dir={{back_path}}"><img  style= "width: 100px; height:100px; margin-left:300px; "src="static/back.png" /></a>
+			 {% endif %}
+			 </div>
+ 		</form>
+ 		</div></td><td>
+ 		<div>
+			<h2>Directory {{path}}</h2>
+			<ul>
+		{% for file in files %}
+			{% if file[1] == True %}
+				<li id="link" ><a href="dir?dir={{file[0]}}">{{file[0].split('/')[-1]}}</a><br></li>
+			{% else %}
+				<li id="link"><a href="{{file[0]}}">{{file[0].split('/')[-1]}}</a><br></li>
+			{% endif %}
+		{% endfor %}
+		</ul>
+		</div>
+		</td></tr></table>
+		</body>
+		
+			
+			
+	</html>
+
+	

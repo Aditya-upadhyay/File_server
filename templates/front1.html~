@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+
+	<html>
+		<head>
+			<title>asciichan</title>
+		</head>
+		<body> 
+			<h></h>
+			<form method="post">
+				
+				<label>
+				<div><b><font size="3"> Art </font></b><br>
+				<textarea name="art">{{art}}</textarea>
+				</label>
+			
+			
+			<div class ="error " style="color:blue" >{{error}}</div>
+			
+			
+			<input type="submit">
+			
+		</form>
+			<div class ="status " style="color:blue" >{{status}}</div>
+			
+	</html>
+
+	

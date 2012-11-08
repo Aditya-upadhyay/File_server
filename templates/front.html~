@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+
+	<html>
+		<head>
+			<title>asciichan</title>
+		</head>
+		<body> 
+			
+			
+	
+			<hr>
+			{% for art in arts %}
+			  <div class="art">
+			   
+			   <pre class="art-body1">{{art.art}}</pre>
+			   <div class ="status " style="color:blue" >{{status}}</div>
+			  </div>
+			{% endfor %}
+			
+	</html>
