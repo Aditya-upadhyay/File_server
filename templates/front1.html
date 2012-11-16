@@ -6,8 +6,10 @@
 			<title>Files</title>
 		</head>
 		<body>
-		<table><tr><td><div>
-		<form action="search">
+		<div id= "masthead" ><b>Simple File Server</b></div>
+		<table><tr><td><div style="margin: 0 auto">
+		
+		<form id = "searchForm" action="search">
  			 <li id="search" style=" border-bottom: 0px">Search: <input type="text" name="search"><br>
  			 <input type="text" name="path" value="{{path}}" style=" border-bottom: 0px; visibility: hidden; height: 0px"><br></li>
  			 <input style=" border-bottom: 0px; visibility: hidden; height: 0px;" type="submit" value="Search"></li>
@@ -16,9 +18,9 @@
  			 <a  href= "dir?dir={{back_path}}"><img  style= "width: 100px; height:100px; margin-left:300px; "src="static/back.png" /></a>
 			 {% endif %}
 			 </div>
- 		</form>
+		</form>
  		</div></td><td>
- 		<div>
+ 		<div id="directory">
 			<h2>Directory {{path}}</h2>
 			<ul>
 		{% for file in files %}
@@ -30,7 +32,13 @@
 		{% endfor %}
 		</ul>
 		</div>
+		</td><td>
+		<form action="upload" method=post enctype=multipart/form-data>
+      	<input id = "uploadForm" type=file name=file>
+        <input id = "uploadForm" style="width:100px; margin-left:380px" type=submit value=Upload>
+   		</form>
 		</td></tr></table>
+		<div id= "masttail" ><b>For best view install Google-Chrome</b></div>
 		</body>
 		
 			

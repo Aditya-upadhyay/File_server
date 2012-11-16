@@ -1,0 +1,10 @@
+
+[Desktop Entry]
+Name=VNC: 192.168.3.119
+Comment=Connect to the remote desktop: 192.168.3.119
+Exec=gtkvncviewer -s 192.168.3.119
+Icon=/usr/share/gtkvncviewer/data/gtkvncviewer_64.png
+StartupNotify=true
+Terminal=false
+Type=Application
+Categories=Network;

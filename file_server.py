@@ -1,10 +1,15 @@
+import encodings.ascii
+from encodings import hex_codec
 from flask import Flask
 from flask import render_template
-from flask import request
+from flask import request, redirect
 from flask import url_for
+from werkzeug import secure_filename
 from werkzeug import SharedDataMiddleware
 import glob, os, sys, subprocess
 app = Flask(__name__)
+UPLOAD_FOLDER = '/home/monster/Downloads/uploaded'
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.wsgi_app = SharedDataMiddleware(app.wsgi_app, {
       '/': os.path.join(os.path.dirname(__file__), 'static')
     })
@@ -35,6 +40,7 @@ def dir():
 @app.route('/search', methods = ['GET'])
 def get():
 		search = request.args.get('search','')
+		searchLower = search.lower()
 		finding = []
 		r= request.args.get('path','')
 		if r.find('static/shared') != -1:
@@ -43,12 +49,25 @@ def get():
 				for filename in filenames:
 					matches.append(os.path.join(root, filename))
 			for match in matches:
-				found = match.split('/')[-1].find(search)
+				found = match.split('/')[-1].lower().find(searchLower)
 				if found != -1:
 					finding.append(match)
 			return render_template("front.html",search = search,path=r, finding = finding, len = len(finding))
 		else:
 			return render_template("404.html", path = r)
+@app.route('/upload', methods=['GET', 'POST'])
+def upload_file():
+    path = request.args.get('path','')
+    print path
+    if request.method == 'POST':
+        file = request.files['file']
+        if file:
+            filename = secure_filename(file.filename)
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            file.stream.seek(0)
+            return redirect('/dir?dir=static/shared/Downloads/uploaded')
+	return  render_template("front1.html",path = path)
+
 def check(path):
 		name_tuple = []
 		files  = glob.glob(path)
